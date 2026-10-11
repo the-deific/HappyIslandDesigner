@@ -1,0 +1,85 @@
+import { layerDefinition } from '../layerDefinition';
+import { pathDefinition } from '../pathDefinition';
+import { state } from '../state';
+import { correctPath } from './correctPath';
+import { isV2Map } from '../mapState';
+import { colors } from '../colors';
+
+export function getDiff(path: paper.Path, colorKey: string) {
+  if (!path.children && path.segments.length < 3) {
+    return {};
+  }
+
+  // figure out which layers to add and subtract from
+  const definition = layerDefinition[colorKey] || pathDefinition[colorKey];
+
+  // // limit the path to the union of the shape on each layer
+  // if (definition.requireLayer) {
+  //   const union = path.intersect(state.drawing[definition.requireLayer]);
+  //   path.remove();
+  //   // eslint-disable-next-line no-param-reassign
+  //   path = union;
+  // }
+
+  // In V2 maps, filter out sand and rock from layer operations
+  // V2 maps use edge tiles for beach/cliff aesthetics instead of separate sand/rock layers
+  const v2RestrictedColors = isV2Map()
+    ? [colors.sand.key, colors.rock.key]
+    : [];
+
+  const editLayers = {};
+  if (definition.addLayers) {
+    definition.addLayers.forEach((ck) => {
+      if (!v2RestrictedColors.includes(ck)) {
+        editLayers[ck] = true;
+      }
+    });
+  }
+  if (definition.cutLayers) {
+    definition.cutLayers.forEach((ck) => {
+      if (!v2RestrictedColors.includes(ck)) {
+        editLayers[ck] = false;
+      }
+    });
+  }
+
+  if (isV2Map() && colorKey === colors.water.key) {
+    const terrainKeys = [colors.level1.key, colors.level2.key, colors.level3.key];
+    // Water should not cut into terrain
+    terrainKeys.forEach((k) => delete editLayers[k]);
+    // Water should add to the water layer (V1 has addLayers:[] since water is implicit background)
+    editLayers[colors.water.key] = true;
+  }
+
+  function isPath(item: paper.Item): item is paper.Path {
+    return (item as paper.Path).segments !== undefined;
+  }
+
+  const diff = {};
+  Object.keys(editLayers).forEach((ck) => {
+    const isAdd = editLayers[ck];
+
+    const delta = isAdd
+      ? path.subtract(state.drawing[ck])
+      : path.intersect(state.drawing[ck]);
+
+    // search for invalid points caused by overlapping diagonals
+    // todo: for free drawing, remove this check
+    const deltaSubPaths = delta.children ? delta.children : [delta];
+    deltaSubPaths.forEach((p) => {
+      if (isPath(p)) {
+        correctPath(p, state.drawing[ck]);
+      }
+    });
+
+    if ((delta.children && delta.children.length > 0) || (isPath(delta) && delta.segments && delta.segments.length > 0)) {  
+      diff[ck] = {
+        isAdd,
+        path: delta,
+      };
+    }
+    delta.remove();
+  });
+
+  return diff;
+}
