@@ -181,43 +181,43 @@ asyncFlowerDefinition.value = {
     img: 'static/sprite/flower/weed-dandelion.png',
   },
   bushPlumeriaPink: {
-    img: 'static/sprite/flower/plumeria-pink.png',
+    img: 'static/sprite/flower/plumeriapink.png',
   },
   bushPlumeriaWhite: {
-    img: 'static/sprite/flower/plumeria-white.png',
+    img: 'static/sprite/flower/plumeriawhite.png',
   },
   bushOsmathusYellow: {
-    img: 'static/sprite/flower/osmathus-yellow.png',
+    img: 'static/sprite/flower/osmathusyellow.png',
   },
   bushOsmathusOrange: {
-    img: 'static/sprite/flower/osmathus-orange.png',
+    img: 'static/sprite/flower/osmathusorange.png',
   },
   bushHydrangeaPink: {
-    img: 'static/sprite/flower/hydrangea-pink.png',
+    img: 'static/sprite/flower/hydrangeapink.png',
   },
   bushHydrangeaBlue: {
-    img: 'static/sprite/flower/hydrangea-blue.png',
+    img: 'static/sprite/flower/hydrangeablue.png',
   },
   bushHolly: {
     img: 'static/sprite/flower/holly.png',
   },
   bushHibiscusYellow: {
-    img: 'static/sprite/flower/hibiscus-yellow.png',
+    img: 'static/sprite/flower/hibiscusyellow.png',
   },
   bushHibiscusRed: {
-    img: 'static/sprite/flower/hibiscus-red.png',
+    img: 'static/sprite/flower/hibiscusred.png',
   },
   bushCamelliaRed: {
-    img: 'static/sprite/flower/camellia-red.png',
+    img: 'static/sprite/flower/camelliared.png',
   },
   bushCamelliaPink: {
-    img: 'static/sprite/flower/camellia-pink.png',
+    img: 'static/sprite/flower/camelliapink.png',
   },
   bushAzaleaWhite: {
-    img: 'static/sprite/flower/azalea-white.png',
+    img: 'static/sprite/flower/azaleawhite.png',
   },
   bushAzaleaPink: {
-    img: 'static/sprite/flower/azalea-pink.png',
+    img: 'static/sprite/flower/azaleapink.png',
   },
 };
 
