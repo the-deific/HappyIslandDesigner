@@ -180,7 +180,45 @@ asyncFlowerDefinition.value = {
   weedDandelion: {
     img: 'static/sprite/flower/weed-dandelion.png',
   },
-
+  bushPlumeriaPink: {
+    img: 'static/sprite/flower/plumeria-pink.png',
+  },
+  bushPlumeriaWhite: {
+    img: 'static/sprite/flower/plumeria-white.png',
+  },
+  bushOsmathusYellow: {
+    img: 'static/sprite/flower/osmathus-yellow.png',
+  },
+  bushOsmathusOrange: {
+    img: 'static/sprite/flower/osmathus-orange.png',
+  },
+  bushHydrangeaPink: {
+    img: 'static/sprite/flower/hydrangea-pink.png',
+  },
+  bushHydrangeaBlue: {
+    img: 'static/sprite/flower/hydrangea-blue.png',
+  },
+  bushHolly: {
+    img: 'static/sprite/flower/holly.png',
+  },
+  bushHibiscusYellow: {
+    img: 'static/sprite/flower/hibiscus-yellow.png',
+  },
+  bushHibiscusRed: {
+    img: 'static/sprite/flower/hibiscus-red.png',
+  },
+  bushCamelliaRed: {
+    img: 'static/sprite/flower/camellia-red.png',
+  },
+  bushCamelliaPink: {
+    img: 'static/sprite/flower/camellia-pink.png',
+  },
+  bushAzaleaWhite: {
+    img: 'static/sprite/flower/azalea-white.png',
+  },
+  bushAzaleaPink: {
+    img: 'static/sprite/flower/azalea-pink.png',
+  },
 };
 
 export function initDefaults() {
